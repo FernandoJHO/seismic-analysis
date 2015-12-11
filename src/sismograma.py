@@ -20,3 +20,9 @@ def mostrarGraficoAmp(datos_sismograma):
 nombre_archivo = input("Ingrese nombre del archivo (sismograma):\n ")
 opcion = input("Mostrar sismograma (amplitud) = 1 |||| Mostrar ruido (aprox.) = 2 |||| Mostrar sismograma (frecuencias): \n")
 datos_sismo = obtenerDatos(nombre_archivo)
+
+if(opcion=='1'):
+    mostrarGraficoAmp(datos_sismo)
+
+else:
+    print("Opción inválida.")
