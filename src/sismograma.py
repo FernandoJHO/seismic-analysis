@@ -11,18 +11,31 @@ def obtenerDatos(nombre_archivo):
 def mostrarGraficoAmp(datos_sismograma):
     plt.xlabel("Tiempo")
     plt.ylabel("Amplitud")
-    print("Generando gráfico...")
+    print("Generando grï¿½fico...")
     plt.plot(datos_sismograma)
-    print("Gráfico generado.")
+    print("Grï¿½fico generado.")
     plt.show()
 	
-	
+def aplicarTransformada(datos_sismo):
+    datos_trans = np.fft.fft(datos_sismo).real
+    return datos_trans
+
+def mostrarGraficoFrec(datos_sismograma):
+    print("Generando grÃ¡fico...")
+    plt.plot(datos_sismograma)
+    print("GrÃ¡fico generado.")
+    plt.show()
+
 nombre_archivo = input("Ingrese nombre del archivo (sismograma):\n ")
-opcion = input("Mostrar sismograma (amplitud) = 1 |||| Mostrar ruido (aprox.) = 2 |||| Mostrar sismograma (frecuencias): \n")
+opcion = input("Mostrar sismograma (amplitud) = 1 |||| Mostrar sismograma (frecuencias) = 2 |||| Mostrar ruido (aprox.) = 3 \n")
 datos_sismo = obtenerDatos(nombre_archivo)
 
 if(opcion=='1'):
     mostrarGraficoAmp(datos_sismo)
-
 else:
-    print("Opción inválida.")
+    if (opcion=='2'):
+        datos_transformada = aplicarTransformada(datos_sismo)
+        mostrarGraficoFrec(datos_transformada)
+
+    else:
+        print("Opciï¿½n invï¿½lida.")
