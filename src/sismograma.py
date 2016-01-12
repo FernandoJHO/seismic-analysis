@@ -52,11 +52,9 @@ def low_pass_filter(x, samples = 20):
     tot = len(a)
     for x in range(tot-samples):
         a[samples + x] = 0.0
-    #plt.plot(np.fft.irfft(a))
-    #plt.show()
     return np.fft.irfft(a)
 
-def classicSTALTAPy(a, nsta= 0.5*100, nlta= 0.5*200):
+def classicSTALTAPy(a, nsta= 10*200, nlta= 20*200):
     sta = np.cumsum(a ** 2)
 
     sta = np.require(sta, dtype=np.float)
@@ -98,8 +96,7 @@ else:
             if opcion == '4':
                 datos_freq = espectroFrecuencia(datos_sismo)
                 datos_filtrados = low_pass_filter(datos_freq)
-                sta_lta = classicSTALTAPy(datos_filtrados)
+                sta_lta = classicSTALTAPy(datos_freq)
                 graf(sta_lta)
-                #mostrarGraficoTiempo(sta_lta)
             else:
                 print("Opción inválida.")
